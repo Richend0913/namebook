@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>姓名判断｜無料で名前の画数診断｜命名辞典</title>
+<meta name="description" content="無料の姓名判断ツール。名前の画数から運勢を診断。天格・人格・地格・外格・総格の五格診断で、お子さまの名付けをサポートします。">
+<meta name="keywords" content="姓名判断,無料,画数,診断,名前,運勢,命名,赤ちゃん,名付け">
+<link rel="canonical" href="https://richend0913.github.io/namebook/seimei.html">
+<link rel="stylesheet" href="css/style.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6327505164684489" crossorigin="anonymous"></script>
+<style>
+.input-row { display: flex; gap: 12px; margin-bottom: 16px; }
+.input-row > div { flex: 1; }
+.input-row label { display: block; font-size: .85rem; color: #64748b; margin-bottom: 4px; font-weight: 500; }
+.input-row input { width: 100%; padding: 14px 16px; border: 1px solid #d1d5db; border-radius: 10px; font-size: 1.2rem; text-align: center; letter-spacing: .3em; }
+.input-row input:focus { outline: none; border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,.1); }
+.btn-judge { width: 100%; padding: 14px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all .2s; }
+.btn-judge:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,102,241,.3); }
+.result-area { display: none; }
+.kaku-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.kaku-item { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; text-align: center; }
+.kaku-name { font-size: .8rem; color: #64748b; margin-bottom: 4px; }
+.kaku-strokes { font-size: 1.8rem; font-weight: 700; color: #6366f1; }
+.kaku-strokes span { font-size: .9rem; font-weight: 400; color: #94a3b8; }
+.kaku-rating { margin-top: 6px; font-size: .85rem; font-weight: 600; }
+.rating-daikichi { color: #dc2626; }
+.rating-kichi { color: #ea580c; }
+.rating-chukichi { color: #ca8a04; }
+.rating-shokichi { color: #65a30d; }
+.rating-kyo { color: #6b7280; }
+.overall-score { text-align: center; padding: 24px; background: linear-gradient(135deg, #f0f0ff, #e8e8ff); border-radius: 14px; margin-bottom: 20px; }
+.overall-score .score { font-size: 3rem; font-weight: 700; color: #6366f1; }
+.overall-score .label { font-size: .9rem; color: #64748b; }
+.detail-locked { background: #f8fafc; border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; text-align: center; position: relative; overflow: hidden; }
+.detail-locked .blur-text { filter: blur(5px); user-select: none; pointer-events: none; font-size: .9rem; color: #64748b; line-height: 2; }
+.detail-locked .unlock-overlay { position: relative; margin-top: -60px; padding-top: 40px; background: linear-gradient(transparent, #f8fafc 30%); text-align: center; }
+.btn-unlock { padding: 14px 32px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all .2s; }
+.btn-unlock:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,158,11,.3); }
+.price-tag { font-size: .85rem; color: #64748b; margin-top: 8px; }
+.detail-item { margin-bottom: 16px; padding: 16px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; }
+.detail-item h4 { font-size: .9rem; color: #6366f1; margin-bottom: 8px; }
+.detail-item p { font-size: .85rem; color: #64748b; line-height: 1.8; }
+.star { color: #f59e0b; }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "姓名判断ツール",
+  "url": "https://richend0913.github.io/namebook/seimei.html",
+  "description": "無料の姓名判断ツール。名前の画数から運勢を五格診断。",
+  "applicationCategory": "LifestyleApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "JPY"}
+}
+</script>
+</head>
+<body>
+<header class="header"><div class="header-inner">
+<a href="./" class="logo">命名辞典<span>赤ちゃんの名前を探そう</span></a>
+<nav class="nav"><a href="./">トップ</a><a href="kanji/">漢字一覧</a><a href="seimei.html" style="color:#6366f1;font-weight:600;">姓名判断</a></nav>
+</div></header>
+
+<section class="hero">
+<h1>無料 姓名判断</h1>
+<p>名前の画数から運勢を診断します</p>
+</section>
+
+<main class="main">
+<div class="breadcrumb"><a href="./">トップ</a> &gt; 姓名判断</div>
+
+<div class="card">
+<h2>名前を入力してください</h2>
+<div class="input-row">
+<div>
+<label>姓（苗字）</label>
+<input type="text" id="sei" placeholder="山田" maxlength="4">
+</div>
+<div>
+<label>名（なまえ）</label>
+<input type="text" id="mei" placeholder="太郎" maxlength="4">
+</div>
+</div>
+<button class="btn-judge" onclick="judge()">診断する</button>
+</div>
+
+<div class="ad-space">広告</div>
+
+<div class="result-area" id="resultArea">
+
+<div class="card">
+<h2 id="resultName"></h2>
+<div class="overall-score">
+<div class="label">総合運勢スコア</div>
+<div class="score" id="totalScore"></div>
+<div class="label" id="totalRating"></div>
+</div>
+<div class="kaku-grid" id="kakuGrid"></div>
+</div>
+
+<div class="ad-space">広告</div>
+
+<div class="card">
+<h2>無料診断結果</h2>
+<div id="freeResult"></div>
+</div>
+
+<div class="card">
+<h2>詳細診断（有料）</h2>
+<div class="detail-locked">
+<div class="blur-text">
+この名前の持つ深い意味と運勢を詳しく解説します。天格が示す家系の運勢、人格が示すあなたの本質的な性格、地格が示す幼少期から青年期の運勢、外格が示す対人関係の傾向、そして総格が示す人生全体の流れを、それぞれ詳細に分析します。さらに、仕事運・恋愛運・健康運・金運の4つの観点から総合的にアドバイスいたします。相性の良い名前の組み合わせや、注意すべきポイントもお伝えします。
+</div>
+<div class="unlock-overlay">
+<p style="font-size:.9rem; color:#333; font-weight:600; margin-bottom:12px;">詳細な診断結果を見る</p>
+<button class="btn-unlock" onclick="unlockDetail()">詳細診断を購入する（¥300）</button>
+<div class="price-tag">お支払い後すぐに結果が表示されます</div>
+</div>
+</div>
+</div>
+
+<div class="ad-space">広告</div>
+
+</div>
+
+<div class="card info-section">
+<h2>姓名判断とは</h2>
+<p>姓名判断は、名前の漢字の画数をもとに運勢を占う日本の伝統的な占術です。姓と名の画数を組み合わせて「五格」と呼ばれる5つの要素を算出し、それぞれが人生の異なる側面を表すとされています。</p>
+
+<h3>五格について</h3>
+<ul>
+<li><strong>天格（てんかく）</strong>：苗字の総画数。家系全体の運勢を表します。</li>
+<li><strong>人格（じんかく）</strong>：苗字の最後の文字と名前の最初の文字の画数の合計。性格や才能、人生の中心的な運勢を表します。</li>
+<li><strong>地格（ちかく）</strong>：名前の総画数。幼少期から青年期の運勢、潜在的な能力を表します。</li>
+<li><strong>外格（がいかく）</strong>：総格から人格を引いた数。対人関係や社会的な運勢を表します。</li>
+<li><strong>総格（そうかく）</strong>：姓名すべての画数の合計。人生全体の運勢、晩年の運勢を表します。</li>
+</ul>
+
+<h3>名付けに活用するポイント</h3>
+<p>赤ちゃんの名前を考える際、姓名判断は一つの参考材料になります。ただし、画数だけでなく、漢字の意味や響き、読みやすさなども総合的に考慮することが大切です。</p>
+<p>当サイトの姓名判断は一般的な画数による診断であり、流派によって判定が異なる場合があります。あくまで名付けの参考としてご利用ください。</p>
+</div>
+
+</main>
+
+<footer class="footer">
+<p>&copy; 2026 命名辞典. All rights reserved.</p>
+</footer>
+
+<script>
+// Kanji stroke count database (common kanji)
+const STROKES = {"一":1,"二":2,"三":3,"四":5,"五":4,"六":4,"七":2,"八":2,"九":2,"十":2,"百":6,"千":3,"万":3,"上":3,"下":3,"中":4,"大":3,"小":3,"山":3,"川":3,"田":5,"木":4,"林":8,"森":12,"水":4,"火":4,"土":3,"金":8,"日":4,"月":4,"年":6,"人":2,"子":3,"女":3,"男":7,"生":5,"花":7,"草":9,"空":8,"雨":8,"雲":12,"風":9,"星":9,"海":9,"石":5,"竹":6,"米":6,"糸":6,"車":7,"足":7,"手":4,"目":5,"耳":6,"口":3,"心":4,"力":2,"王":4,"玉":5,"天":4,"気":6,"見":7,"入":2,"出":5,"立":5,"休":6,"先":6,"名":6,"字":6,"文":4,"本":5,"正":5,"左":5,"右":5,"白":5,"赤":7,"青":8,"黒":11,"色":6,"数":13,"時":10,"分":4,"間":12,"前":9,"後":9,"今":4,"古":5,"新":13,"長":8,"短":12,"高":10,"低":7,"広":5,"多":6,"少":4,"早":6,"遅":12,"近":7,"遠":13,"明":8,"暗":13,"強":11,"弱":10,"太":4,"細":11,"丸":3,"角":7,"直":8,"曲":6,"平":5,"和":8,"安":6,"楽":13,"美":9,"悪":11,"良":7,"好":6,"朝":12,"昼":9,"夕":3,"夜":8,"春":9,"夏":10,"秋":9,"冬":5,"北":5,"南":9,"東":8,"西":6,"内":4,"外":5,"国":8,"地":6,"方":4,"場":12,"野":11,"道":12,"町":7,"村":7,"市":5,"区":4,"県":9,"京":8,"都":11,"島":10,"池":6,"港":12,"湖":12,"谷":7,"岩":8,"原":10,"里":7,"家":10,"寺":6,"社":7,"門":8,"園":13,"学":8,"校":10,"教":11,"室":9,"先":6,"生":5,"友":4,"母":5,"父":4,"兄":5,"弟":7,"姉":8,"妹":8,"祖":9,"親":16,"族":11,"員":10,"会":6,"社":7,"組":11,"仕":5,"事":8,"業":13,"工":3,"作":7,"品":9,"物":8,"食":9,"飲":12,"買":12,"売":7,"店":8,"駅":14,"電":13,"話":13,"読":14,"書":10,"記":10,"語":14,"歌":14,"音":9,"楽":13,"画":8,"写":5,"映":9,"体":7,"首":9,"顔":18,"頭":16,"毛":4,"肉":6,"骨":10,"皮":5,"血":6,"病":10,"薬":16,"医":7,"死":6,"命":8,"運":12,"動":11,"走":7,"飛":9,"泳":8,"乗":9,"降":10,"開":12,"閉":11,"始":8,"終":11,"回":6,"答":12,"問":11,"声":7,"鳴":14,"泣":8,"笑":10,"怒":9,"思":9,"考":6,"知":8,"覚":12,"忘":7,"感":13,"情":11,"意":13,"味":8,"形":7,"様":14,"相":9,"同":6,"違":13,"変":9,"代":5,"次":6,"度":9,"番":12,"号":5,"算":14,"計":9,"合":6,"利":7,"理":11,"由":5,"真":10,"実":8,"定":8,"決":7,"選":15,"配":10,"送":9,"届":8,"届":8,"届":8,"届":8,"届":8,"届":8,"届":8,"届":8,"届":8,
+// Name kanji
+"翔":12,"陽":12,"蓮":13,"結":12,"悠":11,"葵":12,"樹":16,"凛":15,"湊":12,"咲":9,"蒼":13,"紬":11,"颯":14,"莉":10,"奏":9,"碧":14,"暖":13,"律":9,"芽":8,"柊":9,"澪":16,"煌":13,"琴":12,"晴":12,"楓":13,"柚":9,"想":13,"遥":12,"桜":10,
+// Common surname kanji
+"佐":7,"藤":18,"伊":6,"加":5,"渡":12,"辺":5,"吉":6,"鈴":13,"高":10,"橋":16,"中":4,"斉":8,"斎":11,"井":4,"松":8,"岡":8,"坂":7,"宮":10,"阿":8,"部":11,"野":11,"村":7,"尾":7,"河":8,"石":5,"浜":10,"浦":10,"島":10,"本":5,"根":10,"杉":7,"池":6,"久":3,"保":9,"須":12,"永":5,"内":4,"塚":12,"福":13,"徳":14,"武":8,"西":6,"北":5,"丹":4,"羽":6,"黒":11,"若":8,"柴":10,"小":3,"沢":7,"清":11,"近":7,"堀":11,"長":8,"深":11,"増":14,"青":8,"荒":9,"豊":13,"細":11,"栗":10,"片":4,"岸":8,"横":15,"望":11,"熊":14,"菊":11,"宇":6,"城":9,"瀬":19,"関":14,"吉":6,"秋":9,"入":2,"今":4,"江":6,"新":13,"古":5,"前":9,"谷":7,"馬":10,"鶴":21,"亀":11,"成":6,"原":10,"森":12,"園":13,"安":6,"富":12,"志":7,"津":9,"平":5,"柳":9,"戸":4,"千":3,"万":3,"丸":3,"矢":5,"稲":14,"服":8,"早":6,"有":6,"浅":9,"沼":8,"相":9,"白":5,"端":14,"土":3,"和":8,"太":4,"米":6,"川":3,"藍":18,"葛":12,"栄":9,"柿":9,"桑":10,"桐":10,"笹":11,"杏":7,"梅":10,"椎":12,"桃":10,"柏":9,"椿":13,"萩":12,
+// Common given name kanji
+"太":4,"郎":9,"朗":10,"介":4,"助":7,"輔":14,"亮":9,"明":8,"光":6,"輝":15,"彦":9,"雄":12,"夫":4,"男":7,"也":3,"仁":4,"志":7,"義":13,"信":9,"誠":13,"健":11,"康":11,"正":5,"幸":8,"豊":13,"優":17,"勇":9,"剛":10,"智":12,"慶":15,"祐":9,"裕":12,"浩":10,"博":12,"拓":8,"哲":10,"修":10,"隆":11,"章":11,"秀":7,"英":8,"憲":16,"宏":7,"敬":12,"尚":8,"恵":10,"昭":9,"一":1,"之":3,"弘":5,"茂":8,"清":11,"勝":12,"達":12,"宣":9,"直":8,"純":10,"充":6,"徹":15,"慎":13,"啓":11,"俊":9,"伸":7,"孝":7,"雅":13,"和":8,"征":8,"進":11,"治":8,"政":8,"昌":8,"繁":16,"守":6,"寿":7,"紀":9,"敏":10,"克":7,"則":9,"栄":9,"功":5,"将":10,"崇":11,"勉":10,"均":7,"稔":13,"祥":10,"史":5,"彰":14,"司":5,"嗣":13,"恒":9,"満":12,"泰":10,"範":15,"貴":12,"竜":10,"龍":16,"翼":17,"海":9,"岳":8,"真":10,"聡":14,"圭":6,"亨":7,"渉":11,"涼":11,"諒":15,"駿":17,"蹴":19,"壮":6,"爽":11,
+// Female name kanji
+"美":9,"菜":11,"香":9,"奈":8,"里":7,"理":11,"恵":10,"愛":13,"衣":6,"織":18,"絵":12,"咲":9,"彩":11,"綾":14,"華":10,"花":7,"乃":2,"希":7,"紗":10,"沙":7,"実":8,"果":8,"穂":15,"帆":6,"那":7,"依":8,"瑠":14,"璃":15,"妃":6,"姫":10,"舞":15,"雪":11,"音":9,"葉":12,"月":4,"杏":7,"桃":10,"梨":11,"苺":8,"春":9,"夏":10,"秋":9,"冬":5,"朱":6,"紅":9,"藍":18,"茜":9,"萌":11,"芙":7,"蓉":13,"蘭":19,"百":6,"千":3,"万":3,"京":8,"瞳":17,"薫":16,"歩":8,"望":11,"遼":15,"唯":11,"未":5,"栞":10,"詩":13,"文":4,"彩":11,"央":5};
+
+function getStrokes(char) {
+    return STROKES[char] || 0;
+}
+
+function getKakuRating(num) {
+    // Simplified fortune ratings based on common seimei handan
+    const daikichi = [1,3,5,6,7,8,11,13,15,16,17,18,21,23,24,25,29,31,32,33,35,37,38,39,41,45,47,48,52,57,58,61,63,65,67,68];
+    const kichi = [2,4,9,10,12,14,19,20,22,27,30,34,36,40,42,43,44,46,49,50,51,53,55,56,59,60,62,64,66];
+    const kyo = [26,28,54];
+
+    if (daikichi.includes(num)) return { rating: "大吉", class: "rating-daikichi", score: 95 };
+    if (kyo.includes(num)) return { rating: "凶", class: "rating-kyo", score: 30 };
+    if (num % 2 === 0) return { rating: "吉", class: "rating-kichi", score: 75 };
+    return { rating: "中吉", class: "rating-chukichi", score: 65 };
+}
+
+function judge() {
+    const sei = document.getElementById('sei').value.trim();
+    const mei = document.getElementById('mei').value.trim();
+
+    if (!sei || !mei) { alert('姓と名を入力してください'); return; }
+
+    // Calculate strokes for each character
+    const seiChars = [...sei];
+    const meiChars = [...mei];
+
+    let seiStrokes = seiChars.map(c => getStrokes(c));
+    let meiStrokes = meiChars.map(c => getStrokes(c));
+
+    // Check for unknown kanji
+    const unknown = [];
+    seiChars.forEach((c, i) => { if (seiStrokes[i] === 0) unknown.push(c); });
+    meiChars.forEach((c, i) => { if (meiStrokes[i] === 0) unknown.push(c); });
+
+    if (unknown.length > 0) {
+        // Use rough estimate for unknown kanji
+        seiStrokes = seiStrokes.map(s => s || 8);
+        meiStrokes = meiStrokes.map(s => s || 8);
+    }
+
+    const seiTotal = seiStrokes.reduce((a, b) => a + b, 0);
+    const meiTotal = meiStrokes.reduce((a, b) => a + b, 0);
+
+    // Five格 calculation
+    const tenkaku = seiTotal; // 天格
+    const chikaku = meiTotal; // 地格
+    const jinkaku = seiStrokes[seiStrokes.length - 1] + meiStrokes[0]; // 人格
+    const soukaku = seiTotal + meiTotal; // 総格
+    const gaikaku = soukaku - jinkaku; // 外格
+
+    const kakus = [
+        { name: "天格", strokes: tenkaku, desc: "家系の運勢" },
+        { name: "人格", strokes: jinkaku, desc: "性格・才能" },
+        { name: "地格", strokes: chikaku, desc: "幼少〜青年期" },
+        { name: "外格", strokes: gaikaku, desc: "対人関係" },
+        { name: "総格", strokes: soukaku, desc: "人生全体" },
+    ];
+
+    // Build result
+    document.getElementById('resultName').textContent = `${sei} ${mei} さんの姓名判断`;
+
+    let gridHtml = '';
+    let totalScoreSum = 0;
+    kakus.forEach(k => {
+        const r = getKakuRating(k.strokes);
+        totalScoreSum += r.score;
+        gridHtml += `<div class="kaku-item">
+            <div class="kaku-name">${k.name}（${k.desc}）</div>
+            <div class="kaku-strokes">${k.strokes}<span>画</span></div>
+            <div class="kaku-rating ${r.class}">${r.rating}</div>
+        </div>`;
+    });
+    document.getElementById('kakuGrid').innerHTML = gridHtml;
+
+    const avgScore = Math.round(totalScoreSum / 5);
+    document.getElementById('totalScore').textContent = avgScore + '点';
+    const overallRating = avgScore >= 85 ? '大吉 — とても良い名前です' : avgScore >= 70 ? '吉 — 良い名前です' : avgScore >= 55 ? '中吉 — まずまずの名前です' : '要検討 — 他の候補も考えてみましょう';
+    document.getElementById('totalRating').textContent = overallRating;
+
+    // Free result text
+    const jinkakuR = getKakuRating(jinkaku);
+    const chikakuR = getKakuRating(chikaku);
+    const soukakuR = getKakuRating(soukaku);
+
+    let freeHtml = `<div class="detail-item">
+        <h4>人格（${jinkaku}画）— ${jinkakuR.rating}</h4>
+        <p>人格は性格や才能を表す最も重要な格です。${mei}さんの人格は${jinkaku}画で「${jinkakuR.rating}」。${jinkakuR.score >= 80 ? 'リーダーシップがあり、周囲からの信頼も厚い傾向があります。' : jinkakuR.score >= 60 ? '穏やかで協調性があり、周囲との調和を大切にする傾向があります。' : '独自の感性を持ち、芸術的な才能に恵まれる可能性があります。'}</p>
+    </div>
+    <div class="detail-item">
+        <h4>総格（${soukaku}画）— ${soukakuR.rating}</h4>
+        <p>総格は人生全体の運勢を表します。${soukaku}画は「${soukakuR.rating}」。${soukakuR.score >= 80 ? '生涯を通じて安定した運勢に恵まれるでしょう。' : soukakuR.score >= 60 ? '努力が実を結び、着実に成長していける運勢です。' : '波瀾万丈な人生になる可能性がありますが、それが大きな成長につながります。'}</p>
+    </div>`;
+    document.getElementById('freeResult').innerHTML = freeHtml;
+
+    // Store for unlock
+    window._judgeData = { sei, mei, kakus, avgScore, seiChars, meiChars, seiStrokes, meiStrokes };
+
+    document.getElementById('resultArea').style.display = 'block';
+    document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+}
+
+function unlockDetail() {
+    // Redirect to Stripe payment link
+    const d = window._judgeData;
+    if (!d) return;
+    // Store name in sessionStorage for after payment
+    sessionStorage.setItem('seimei_name', JSON.stringify(d));
+    window.open('https://buy.stripe.com/fZu6oJb4H1u4dFC4gK9oc03', '_blank');
+    // Show detail immediately (honor system for now, or implement webhook later)
+    showDetail();
+}
+
+function showDetail() {
+    const d = window._judgeData;
+    if (!d) return;
+
+    const jinkaku = d.kakus[1].strokes;
+    const chikaku = d.kakus[2].strokes;
+    const gaikaku = d.kakus[3].strokes;
+    const soukaku = d.kakus[4].strokes;
+
+    const workLuck = (jinkaku + soukaku) % 5;
+    const loveLuck = (chikaku + gaikaku) % 5;
+    const healthLuck = (jinkaku + chikaku) % 5;
+    const moneyLuck = (soukaku + gaikaku) % 5;
+
+    const stars = n => '<span class="star">' + '★'.repeat(Math.max(1, Math.min(5, n + 1))) + '</span>' + '☆'.repeat(Math.max(0, 5 - Math.max(1, n + 1)));
+
+    const detailHtml = `
+    <div class="detail-item"><h4>仕事運 ${stars(workLuck)}</h4>
+    <p>${workLuck >= 3 ? `${d.mei}さんは仕事において高い能力を発揮できる運勢です。特にリーダーシップを求められる場面で力を発揮し、周囲からの評価も高くなるでしょう。30代以降に大きな飛躍のチャンスが訪れます。` : workLuck >= 1 ? `堅実に努力を重ねることで、着実にキャリアを築いていけます。チームワークを大切にすることで、より大きな成果を上げられるでしょう。` : `独創的なアイデアで道を切り開くタイプです。型にはまらない働き方が向いています。`}</p></div>
+    <div class="detail-item"><h4>恋愛運 ${stars(loveLuck)}</h4>
+    <p>${loveLuck >= 3 ? `人を惹きつける魅力があり、恋愛においても充実した関係を築けます。パートナーとの相性が良く、結婚後も幸せな家庭を築けるでしょう。` : loveLuck >= 1 ? `誠実な性格が魅力となり、信頼できるパートナーに恵まれます。時間をかけて深い絆を育てていくタイプです。` : `理想が高い傾向がありますが、その分出会った時の喜びも大きいでしょう。`}</p></div>
+    <div class="detail-item"><h4>健康運 ${stars(healthLuck)}</h4>
+    <p>${healthLuck >= 3 ? `基本的に健康に恵まれた運勢です。体力があり、活動的な生活を送れるでしょう。ストレス管理を意識することで、より健やかに過ごせます。` : `規則正しい生活リズムを心がけることが大切です。適度な運動と休息のバランスを取ることで、健康を維持できるでしょう。`}</p></div>
+    <div class="detail-item"><h4>金運 ${stars(moneyLuck)}</h4>
+    <p>${moneyLuck >= 3 ? `金運に恵まれており、経済的な安定を得やすい運勢です。投資や貯蓄にも向いており、将来的に資産を築ける可能性が高いです。` : moneyLuck >= 1 ? `堅実な金銭管理ができるタイプです。無駄遣いを避け、計画的にお金を使うことで、安定した経済基盤を築けます。` : `お金の流れに波がありますが、大きなチャンスをつかめる運勢です。リスク管理を意識しましょう。`}</p></div>
+    <div class="detail-item"><h4>総合アドバイス</h4>
+    <p>「${d.sei}${d.mei}」という名前は、総合スコア${d.avgScore}点${d.avgScore >= 80 ? 'と非常にバランスの良い名前です。この名前の持つエネルギーを活かして、自信を持って人生を歩んでいってください。' : d.avgScore >= 60 ? 'で安定感のある名前です。名前の持つ意味を大切にし、その意味に沿った生き方を意識すると、より運勢が開けるでしょう。' : 'です。画数に課題はありますが、名前の持つ意味や響きの美しさは運勢に良い影響を与えます。前向きな姿勢を大切にしてください。'}</p></div>`;
+
+    document.querySelector('.detail-locked').innerHTML = detailHtml;
+}
+</script>
+</body>
+</html>
