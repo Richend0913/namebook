@@ -106,15 +106,20 @@
 </div>
 
 <div class="card">
-<h2>詳細診断（有料）</h2>
+<!-- 【2026-08-18 販売停止】特定商取引法11条の表示（tokushoho.html）が未整備のまま
+     本番Stripe決済リンク（¥300）が有効になっていたため、購入導線を停止した。
+     削除ではなく無効化。復旧時の原文ボタン:
+       <button class="btn-unlock" onclick="unlockDetail()">詳細診断を購入する（¥300）</button>
+     価格表示（¥300）と「お支払い後すぐに結果が表示されます」も同時に撤去。 -->
+<h2>詳細診断</h2>
 <div class="detail-locked">
 <div class="blur-text">
 この名前の持つ深い意味と運勢を詳しく解説します。天格が示す家系の運勢、人格が示すあなたの本質的な性格、地格が示す幼少期から青年期の運勢、外格が示す対人関係の傾向、そして総格が示す人生全体の流れを、それぞれ詳細に分析します。さらに、仕事運・恋愛運・健康運・金運の4つの観点から総合的にアドバイスいたします。相性の良い名前の組み合わせや、注意すべきポイントもお伝えします。
 </div>
 <div class="unlock-overlay">
-<p style="font-size:.9rem; color:#333; font-weight:600; margin-bottom:12px;">詳細な診断結果を見る</p>
-<button class="btn-unlock" onclick="unlockDetail()">詳細診断を購入する（¥300）</button>
-<div class="price-tag">お支払い後すぐに結果が表示されます</div>
+<p style="font-size:.9rem; color:#333; font-weight:600; margin-bottom:12px;">詳細診断は現在ご利用いただけません</p>
+<button class="btn-unlock" style="opacity:.5;cursor:not-allowed;" disabled aria-disabled="true">販売準備中</button>
+<div class="price-tag">特定商取引法に基づく表記の整備中です</div>
 </div>
 </div>
 </div>
@@ -260,15 +265,13 @@ function judge() {
     document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
 }
 
+// 【2026-08-18 販売停止】特商法表記が未整備のため、Stripe Payment Link への
+// window.open を削除した。URLは配信HTMLに残さない（復旧時は git history から取得）。
+// この関数はもう呼ばれない（ボタンをdisabledにしたため）が、
+// 万一呼ばれても決済ページを開かないよう no-op にしてある。
 function unlockDetail() {
-    // Redirect to Stripe payment link
-    const d = window._judgeData;
-    if (!d) return;
-    // Store name in sessionStorage for after payment
-    sessionStorage.setItem('seimei_name', JSON.stringify(d));
-    window.open('https://buy.stripe.com/fZu6oJb4H1u4dFC4gK9oc03', '_blank');
-    // Show detail immediately (honor system for now, or implement webhook later)
-    showDetail();
+    alert('詳細診断は現在ご利用いただけません。\n特定商取引法に基づく表記の整備が完了しだい再開します。');
+    return;
 }
 
 function showDetail() {
